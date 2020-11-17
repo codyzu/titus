@@ -18,6 +18,10 @@ async function plugin(server, config) {
       dir: path.join(__dirname, 'routes'),
       options: config
     })
+
+  if (config.enableAdmin) {
+    await server.register(require('titus-admin-backend'), config.auth)
+  }
 }
 
 module.exports = fp(plugin)
